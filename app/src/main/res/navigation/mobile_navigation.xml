@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_radio">
+
+    <fragment
+        android:id="@+id/navigation_radio"
+        android:name="com.dom.lattsvenska.ui.radio.RadioFragment"
+        android:label="@string/title_radio"
+        tools:layout="@layout/fragment_radio" />
+
+    <fragment
+        android:id="@+id/navigation_svt"
+        android:name="com.dom.lattsvenska.ui.svt.SvtFragment"
+        android:label="@string/title_svt"
+        tools:layout="@layout/fragment_svt" />
+
+    <fragment
+        android:id="@+id/navigation_facebook"
+        android:name="com.dom.lattsvenska.ui.facebook.FacebookFragment"
+        android:label="@string/title_facebook"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>
