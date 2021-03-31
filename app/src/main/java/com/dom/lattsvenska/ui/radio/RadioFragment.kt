@@ -24,8 +24,7 @@ class RadioFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        radioViewModel =
-                ViewModelProvider(this).get(RadioViewModel::class.java)
+        radioViewModel = ViewModelProvider(this).get(RadioViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_radio, container, false)
 
         val webView: WebView = root.findViewById(R.id.fragment_radio_webview)

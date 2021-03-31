@@ -2,5 +2,10 @@
     <string name="app_name">Lätt Svenska</string>
     <string name="title_radio">Radio</string>
     <string name="title_svt">SVT</string>
+    <string name="title_wordbook">Wordbook</string>
     <string name="title_facebook">FB Lätt Svenska</string>
+    <string name="hint_word">Type a new word</string>
+    <string name="hint_translation">Type the words translation</string>
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string>
 </resources>

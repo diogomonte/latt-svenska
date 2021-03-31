@@ -22,10 +22,9 @@ class SvtFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        svtViewModel =
-                ViewModelProvider(this).get(SvtViewModel::class.java)
+            savedInstanceState: Bundle?): View? {
+
+        svtViewModel = ViewModelProvider(this).get(SvtViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_svt, container, false)
 
         val webView: WebView = root.findViewById(R.id.fragment_radio_webview)

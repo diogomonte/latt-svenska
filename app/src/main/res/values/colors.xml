@@ -5,6 +5,7 @@
     <color name="blue_dark">#004B87</color>
     <color name="yeallow_light">#FFE200</color>
     <color name="yellow_dark">#FFCD00</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#FFD4291F</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFFFFFF</color>
 </resources>

@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_svt" />
 
     <fragment
+        android:id="@+id/navigation_wordbook"
+        android:name="com.dom.lattsvenska.ui.wordbook.WordbookFragment"
+        android:label="@string/title_wordbook"
+        tools:layout="@layout/fragment_wordbook" />
+
+    <fragment
         android:id="@+id/navigation_facebook"
         android:name="com.dom.lattsvenska.ui.facebook.FacebookFragment"
         android:label="@string/title_facebook"
