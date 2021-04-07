@@ -3,6 +3,7 @@ package com.dom.lattsvenska.ui.wordbook
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dom.lattsvenska.R
@@ -34,9 +35,26 @@ class WordRecyclerViewAdapter(var words: List<Word>):
         private var wordValue: TextView = itemView.findViewById(R.id.cardview_word_value)
         private var wordTranslation: TextView = itemView.findViewById(R.id.cardview_word_translation)
 
+        private fun wordVisible() {
+            wordValue.visibility = View.VISIBLE
+            wordTranslation.visibility = View.GONE
+        }
+
+        private fun translationVisible() {
+            wordValue.visibility = View.GONE
+            wordTranslation.visibility = View.VISIBLE
+        }
+
         fun bind(word: Word) {
             wordValue.text = word.value
             wordTranslation.text = word.translation
+            wordTranslation.visibility = View.GONE
+            itemView.setOnClickListener {
+                when (wordValue.visibility == View.VISIBLE) {
+                    true  -> translationVisible()
+                    false -> wordVisible()
+                }
+            }
         }
     }
 }

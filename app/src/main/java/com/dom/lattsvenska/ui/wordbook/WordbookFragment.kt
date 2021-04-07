@@ -37,6 +37,12 @@ class WordbookFragment : Fragment() {
         return root
     }
 
+    private fun setupViewModel() {
+        wordbookViewModel = ViewModelProvider(this).get(WordbookViewModel::class.java)
+        wordbookViewModel.onMessageError.observe(viewLifecycleOwner, onMessageErrorObserver)
+        wordbookViewModel.words.observe(viewLifecycleOwner, onWordsLoaded)
+    }
+
     private fun setupUI(root: View) {
         wordRecycleViewAdapter = WordRecyclerViewAdapter(wordbookViewModel.words.value ?: emptyList())
         errorLayout = root.findViewById(R.id.fragment_wordbook_error)
@@ -54,12 +60,6 @@ class WordbookFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel() {
-        wordbookViewModel = ViewModelProvider(this).get(WordbookViewModel::class.java)
-        wordbookViewModel.onMessageError.observe(viewLifecycleOwner, onMessageErrorObserver)
-        wordbookViewModel.words.observe(viewLifecycleOwner, onWordsLoaded)
-    }
-
     private val onWordsLoaded = Observer<List<Word>> {
         errorLayout.visibility = View.GONE
         wordRecycleViewAdapter.update(it)
@@ -72,25 +72,23 @@ class WordbookFragment : Fragment() {
 
     private fun openNewWordDialog() {
         activity?.let {
-            val dialog = Dialog(it, android.R.style.Theme_Light_NoTitleBar_Fullscreen)
-            dialog.setContentView(R.layout.dialog_new_word)
+            val dialog = Dialog(it, android.R.style.Theme_Light_NoTitleBar_Fullscreen).apply {
+                setContentView(R.layout.dialog_new_word)
+                val wordValue = findViewById<TextView>(R.id.fragment_new_word_value)
+                val wordTranslation = findViewById<TextView>(R.id.fragment_new_word_translation)
 
-            val wordValue = dialog.findViewById<TextView>(R.id.fragment_new_word_value)
-            val wordTranslation = dialog.findViewById<TextView>(R.id.fragment_new_word_translation)
+                findViewById<Button>(R.id.dialog_new_word_cancel)
+                        .setOnClickListener { dismiss() }
 
-            dialog.findViewById<Button>(R.id.dialog_new_word_cancel)
-                .setOnClickListener {
-                    dialog.dismiss()
-                }
-
-            dialog.findViewById<Button>(R.id.dialog_new_word_save)
-                .setOnClickListener {
-                    wordbookViewModel.wordValue = wordValue.text.toString()
-                    wordbookViewModel.wordTranslation = wordTranslation.text.toString()
-                    doAsync {
-                        wordbookViewModel.saveNewWord()
-                    }
-                }
+                findViewById<Button>(R.id.dialog_new_word_save)
+                        .setOnClickListener {
+                            wordbookViewModel.wordValue = wordValue.text.toString()
+                            wordbookViewModel.wordTranslation = wordTranslation.text.toString()
+                            doAsync {
+                                wordbookViewModel.saveNewWord()
+                            }
+                        }
+            }
 
             dialog.show()
         }
