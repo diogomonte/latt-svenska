@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.GridLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -78,7 +77,11 @@ class WordbookFragment : Fragment() {
                 val wordTranslation = findViewById<TextView>(R.id.fragment_new_word_translation)
 
                 findViewById<Button>(R.id.dialog_new_word_cancel)
-                        .setOnClickListener { dismiss() }
+                        .setOnClickListener {
+                            wordbookViewModel.wordValue = ""
+                            wordbookViewModel.wordTranslation = ""
+                            dismiss()
+                        }
 
                 findViewById<Button>(R.id.dialog_new_word_save)
                         .setOnClickListener {
